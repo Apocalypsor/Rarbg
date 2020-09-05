@@ -1,0 +1,11 @@
+{
+    "version": 2,
+    "builds": [
+        { "src": "*.py", "use": "@vercel/python" },
+        { "src": "rarbg/*.py", "use": "@vercel/python" }
+    ],
+    "routes": [
+        { "src": "/", "dest": "https://rssbg.now.sh/docs" },
+        { "src": "/(.*)", "headers": { "Cache-Control": "s-maxage=1800" }, "dest": "main.py" }
+    ]
+}
