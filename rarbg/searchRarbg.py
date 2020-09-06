@@ -50,7 +50,7 @@ def getResult(mode, searchObj=None, categoryObj=None):
 
                 if categoryValid:
                     searchKw = {
-                        mode: searchObj, 
+                        mode: searchObj,
                         'categories': [categories[c] for c in categoryValid]
                 }
                 else:
@@ -68,7 +68,7 @@ def getResult(mode, searchObj=None, categoryObj=None):
         else:
             result = client.list(limit=50)
             status, output = True, getRSS(result)
-        
+
         return status, output
 
     except Exception as e:

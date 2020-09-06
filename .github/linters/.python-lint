@@ -1,5 +1,8 @@
 [MESSAGES CONTROL]
 disable=import-error,
+        missing-module-docstring,
+        invalid-name,
+        broad-except,
         print-statement,
         parameter-unpacking,
         unpacking-in-except,
