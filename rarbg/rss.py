@@ -9,12 +9,12 @@ feed.link(href='https://github.com/Apocalypsor/Rarbg')
 feed.description('Make RARBG Greater Again! by Apocalypsor')
 feed.language('en')
 
-def getRSS(result):
-    for r in result:
-        fg = feed.add_entry()
-        fg.title(r.filename)
-        fg.link(href=r.download)
-        fg.guid(r.download)
+def getRSS(entries):
+    for entry in entries:
+        feedEntry = feed.add_entry()
+        feedEntry.title(entry.filename)
+        feedEntry.link(href=entry.download)
+        feedEntry.guid(entry.download)
 
     response = feed.rss_str(pretty=True)
 

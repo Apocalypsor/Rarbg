@@ -6,6 +6,13 @@ from .rss import getRSS
 
 client = rarbgapi.RarbgAPI()
 
+modes = {
+    'search_string',
+    'search_imdb',
+    'search_tvdb',
+    'search_themoviedb'
+}
+
 categories = {
     'ADULT': rarbgapi.RarbgAPI.CATEGORY_ADULT,
     'MOVIE_XVID': rarbgapi.RarbgAPI.CATEGORY_MOVIE_XVID,
@@ -33,66 +40,36 @@ categories = {
     'EBOOK': rarbgapi.RarbgAPI.CATEGORY_EBOOK
 }
 
-def getResult(mode, search_obj=None, category_obj=None):
+def getResult(mode, searchObj=None, categoryObj=None):
     try:
-        if mode == 'title':
-            if category_obj:
-                category_valid = set(categories.keys()) & category_obj
+        if mode in modes:
+            categoryError = None
 
-                if category_valid:
-                    result = client.search(search_string=search_obj, \
-                        categories=[categories[c] for c in category_valid])
-                    return True, getRSS(result)
-                
-                return False, 'No Valid Categories!'
+            if categoryObj:
+                categoryValid = set(categories.keys()) & categoryObj
 
-            result = client.search(search_string=search_obj)
-            return True, getRSS(result)
+                if categoryValid:
+                    searchKw = {
+                        mode: searchObj, 
+                        'categories': [categories[c] for c in categoryValid]
+                }
+                else:
+                    categoryError = 'No Valid Categories!'
 
-        elif mode == 'imdb':
-            if category_obj:
-                category_valid = set(categories.keys()) & category_obj
+            else:
+                searchKw = {mode: searchObj}
 
-                if category_valid:
-                    result = client.search(search_imdb=search_obj, \
-                        categories=[categories[c] for c in category_valid])
-                    return True, getRSS(result)
+            if categoryError:
+                status, output = False, categoryError
+            else:
+                result = client.search(**searchKw)
+                status, output = True, getRSS(result)
 
-                return False, 'No Valid Categories!'
-
-            result = client.search(search_imdb=search_obj)
-            return True, getRSS(result)
-
-        elif mode == 'tvdb':
-            if category_obj:
-                category_valid = set(categories.keys()) & category_obj
-
-                if category_valid:
-                    result = client.search(search_tvdb=search_obj, \
-                        categories=[categories[c] for c in category_valid])
-                    return True, getRSS(result)
-
-                return False, 'No Valid Categories!'
-
-            result = client.search(search_tvdb=search_obj)
-            return True, getRSS(result)
-
-        elif mode == 'tmdb':
-            if category_obj:
-                category_valid = set(categories.keys()) & category_obj
-
-                if category_valid:
-                    result = client.search(search_themoviedb=search_obj, \
-                        categories=[categories[c] for c in category_valid])
-                    return True, getRSS(result)
-
-                return False, 'No Valid Categories!'
-
-            result = client.search(search_themoviedb=search_obj)
-            return True, getRSS(result)
-
-        result = client.list(limit=50)
-        return True, getRSS(result)
+        else:
+            result = client.list(limit=50)
+            status, output = True, getRSS(result)
+        
+        return status, output
 
     except Exception as e:
         return False, e

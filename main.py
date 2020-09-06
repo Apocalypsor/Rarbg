@@ -30,7 +30,7 @@ def generateSearch(
     title: str = Path(..., description='Title'),
     category: Optional[set] = Query(None, description='Category')
 ):
-    status, output = getResult('title', title, category)
+    status, output = getResult('search_string', title, category)
 
     if status:
         return Response(content=output, media_type='application/rss+xml')
@@ -42,7 +42,7 @@ def generateIMDb(
     imdb: str = Path(..., description='IMDb ID'),
     category: Optional[set] = Query(None, description='Category')
 ):
-    status, output = getResult('imdb', imdb, category)
+    status, output = getResult('search_imdb', imdb, category)
 
     if status:
         return Response(content=output, media_type='application/rss+xml')
@@ -54,7 +54,7 @@ def generateTVDb(
     tvdb: str = Path(..., description='TheTVDB ID'),
     category: Optional[set] = Query(None, description='Category')
 ):
-    status, output = getResult('tvdb', tvdb, category)
+    status, output = getResult('search_tvdb', tvdb, category)
 
     if status:
         return Response(content=output, media_type='application/rss+xml')
@@ -66,7 +66,7 @@ def generateTMDb(
     tmdb: str = Path(..., description='TMDb ID'),
     category: Optional[set] = Query(None, description='Category')
 ):
-    status, output = getResult('tmdb', tmdb, category)
+    status, output = getResult('search_themoviedb', tmdb, category)
 
     if status:
         return Response(content=output, media_type='application/rss+xml')
