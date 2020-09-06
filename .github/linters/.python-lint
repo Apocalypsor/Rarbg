@@ -1,6 +1,6 @@
 [MESSAGES CONTROL]
 disable=import-error,
-        missing-module-docstring,
+        missing-function-docstring,
         invalid-name,
         broad-except,
         print-statement,

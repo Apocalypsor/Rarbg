@@ -8,6 +8,7 @@ feed.title('Customed RARBG Torrent Feed')
 feed.link(href='https://github.com/Apocalypsor/Rarbg')
 feed.description('Make RARBG Greater Again! by Apocalypsor')
 feed.language('en')
+feed.logo('https://cdn.jsdelivr.net/gh/Apocalypsor/Rarbg@master/assets/favicon.png')
 
 def getRSS(entries):
     for entry in entries:
