@@ -5,8 +5,7 @@
         { "src": "rarbg/*.py", "use": "@vercel/python" }
     ],
     "routes": [
-        { "src": "/favicon.ico", "dest": "https://cdn.jsdelivr.net/gh/Apocalypsor/Rarbg@master/assets/favicon.png" },
-        { "src": "/", "dest": "https://rssbg.now.sh/docs" },
-        { "src": "/(.*)", "headers": { "Cache-Control": "s-maxage=1800" }, "dest": "main.py" }
+        { "src": "/", "dest": "https://rg.ppr.pm/docs" }
+        { "src": "/(.*)", "dest": "main.py" }
     ]
 }
