@@ -4,11 +4,12 @@ from feedgen.feed import FeedGenerator
 
 feed = FeedGenerator()
 
-feed.title('Customed RARBG Torrent Feed')
-feed.link(href='https://github.com/Apocalypsor/Rarbg')
-feed.description('Make RARBG Greater Again! by Apocalypsor')
-feed.language('en')
-feed.logo('https://cdn.jsdelivr.net/gh/Apocalypsor/Rarbg@master/assets/favicon.png')
+feed.title("Customed RARBG Torrent Feed")
+feed.link(href="https://github.com/Apocalypsor/Rarbg")
+feed.description("Make RARBG Greater Again! by Apocalypsor")
+feed.language("en")
+feed.logo("https://cdn.jsdelivr.net/gh/Apocalypsor/Rarbg@master/assets/favicon.png")
+
 
 def getRSS(entries):
     for entry in entries:
@@ -21,6 +22,6 @@ def getRSS(entries):
 
     return response
 
-if __name__ == '__main__':
-    print('rarbg.to')
-    
+
+if __name__ == "__main__":
+    print("rarbg.to")

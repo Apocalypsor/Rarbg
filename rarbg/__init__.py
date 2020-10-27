@@ -1,1 +1,1 @@
-__all__ = ['searchRarbg']
+__all__ = ["searchRarbg"]
