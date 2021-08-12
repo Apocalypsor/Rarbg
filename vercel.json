@@ -5,7 +5,7 @@
         { "src": "rarbg/*.py", "use": "@vercel/python" }
     ],
     "routes": [
-        { "src": "/", "dest": "https://rssbg.now.sh/docs" },
+        { "src": "/", "dest": "https://rssbg.vercel.app/docs" },
         { "src": "/(.*)", "dest": "main.py" }
     ]
 }
